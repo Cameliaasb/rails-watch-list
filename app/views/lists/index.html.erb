@@ -1,13 +1,17 @@
 <div class="container p-2">
-  <h2> Movie categories </h2>
-    <div class="d-flex my-3">
-      <% @lists.each do |list| %>
-        <strong>
-          <%=
-          link_to list.name, list_path(list),
-          class:"text-decoration-none bg-light border border-dark p-3 text-dark m-2"
-          %>
-        </strong>
-      <% end %>
-    </div>
+  <div class="d-flex justify-content-between">
+    <h2> My lists </h2>
+    <%= link_to "Add a new list", new_list_path, class:"btn btn-dark m-2" %>
+  </div>
+
+  <div class="d-flex my-3">
+    <% @lists.each do |list| %>
+      <strong>
+        <%=
+        link_to list.name, list_path(list),
+        class:"text-decoration-none bg-light border border-dark p-3 text-dark m-2"
+        %>
+      </strong>
+    <% end %>
+  </div>
 </div>

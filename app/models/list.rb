@@ -1,4 +1,5 @@
 class List < ApplicationRecord
+  has_one_attached :photo
   # A list has many bookmarks
   # When you delete a list, you should delete all associated bookmarks
   has_many :bookmarks, dependent: :delete_all

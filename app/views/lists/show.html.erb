@@ -1,15 +1,14 @@
-<%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
+<%# <%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
 
-<div class="container">
-  <div class="d-flex justify-content-between my-3">
+
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @list.photo.key %>');">
+  <div class="container">
     <h2><%= @list.name %></h2>
-    <%= link_to lists_path do %>
-      <i class="fa-solid fa-house text-dark"></i>
-    <% end %>
   </div>
+</div>
 
 
-
+<div class="container my-3">
   <div class="row gx-2 mb-3">
     <% @list.bookmarks.each do |bookmark| %>
       <div style="height: 400px" class="col-3 text-decoration-none bg-light border border-dark p-3 text-dark">
@@ -30,12 +29,13 @@
     <% end %>
   </div >
 
-
-  <h2>Add a new movie to the list</h2>
-  <%= simple_form_for [@list, @bookmark] do |f| %>
-    <%= f.input :comment %>
-    <%= f.association :movie %>
-    <%= f.button :submit, class:"btn btn-dark" %>
-  <% end %>
+  <div class="my-3">
+    <h2>Add a new movie to the list</h2>
+    <%= simple_form_for [@list, @bookmark] do |f| %>
+      <%= f.input :comment %>
+      <%= f.association :movie %>
+      <%= f.button :submit, class:"btn btn-dark" %>
+    <% end %>
+  </div>
 
 </div>

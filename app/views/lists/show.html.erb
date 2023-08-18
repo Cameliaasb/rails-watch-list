@@ -8,24 +8,28 @@
 
 
 
-  <div class="d-flex my-3">
+  <div class="row gx-2 mb-3">
     <% @list.bookmarks.each do |bookmark| %>
-      <div class="text-decoration-none bg-light border border-dark p-3 text-dark m-2">
-        <strong>  <h3> <%= bookmark.movie.title %> </h3> </strong>
-        <p> <%= bookmark.movie.overview %> </p>
-        <div class="d-flex justify-content-between align-items-center">
+      <div style="height: 400px" class="col-3 text-decoration-none bg-light border border-dark p-3 text-dark">
+        <div style="height: 300px">
+          <strong>  <h3> <%= bookmark.movie.title %> </h3> </strong>
+          <p> <%= bookmark.movie.overview %> </p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center border-top border-dark">
           <p> <%= bookmark.comment %> </p>
-          <p> <%= bookmark.movie.rating %> </p>
+          <p> <%= bookmark.movie.rating %>/10 <i class="fa-solid fa-star"></i> </p>
         </div>
         <div>
-          <%= link_to "Delete", bookmark_path(bookmark),
-           data: {turbo_method: :delete}
-          %>
+          <%= link_to bookmark_path(bookmark), data: {turbo_method: :delete} do %>
+          <div class="text-decoration-none text-secondary"> <i class="fa-solid fa-trash"></i></div>
+          <% end %>
         </div>
       </div>
     <% end %>
-  </div>
+  </div >
 
+
+  <h2>Add a new movie to the list</h2>
   <%= simple_form_for [@list, @bookmark] do |f| %>
     <%= f.input :comment %>
     <%= f.association :movie %>
